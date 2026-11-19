@@ -1,0 +1,38 @@
+UMATRONIX — SERVIDOR Y CUENTAS CON NODE.JS + MONGODB
+
+ESTRUCTURA
+- public/: página actual (HTML, CSS y JavaScript). Se conserva el diseño original.
+- server.js: servidor Express.
+- config/database.js: conexión Mongoose a MongoDB.
+- models/: modelos User, Product y Order.
+- routes/: registro, inicio/cierre de sesión, productos y pedidos.
+- middleware/: protección de rutas.
+- .env.example: plantilla de configuración privada.
+
+REQUISITOS
+- Node.js 18 o superior.
+- Una base de datos MongoDB (por ejemplo, MongoDB Atlas).
+
+INSTALACIÓN
+1. Descomprime el ZIP y abre la carpeta Umatronix en Visual Studio Code.
+2. Abre Terminal > Nuevo terminal.
+3. Ejecuta: npm install
+4. Copia .env.example y crea otro archivo llamado .env en la misma carpeta que server.js.
+5. En .env completa MONGODB_URI con la cadena de conexión de tu propia base de datos.
+6. Cambia SESSION_SECRET por una cadena larga, privada y aleatoria (mínimo 32 caracteres).
+7. Ejecuta: npm start
+8. Abre http://localhost:3000 en el navegador. No abras public/index.html directamente ni uses Live Server para esta versión.
+
+CUENTAS Y PEDIDOS
+- El formulario permite crear una cuenta y luego iniciar sesión.
+- Las contraseñas se guardan con hash bcrypt; nunca se guardan en texto plano.
+- Las sesiones se guardan en MongoDB y usan cookie HttpOnly.
+- En Mi lista, el botón "Registrar compra" crea un pedido asociado a la cuenta.
+- "Mis compras" muestra los pedidos de la cuenta que inició sesión.
+- El pedido es un REGISTRO de compra de demostración. No cobra dinero ni procesa pagos.
+- El catálogo actual y sus imágenes continúan guardándose en localStorage del navegador. El modelo Product queda preparado, pero la sincronización y administración de catálogo en MongoDB es una fase posterior.
+
+IMPORTANTE
+- No compartas tu archivo .env ni publiques tu MONGODB_URI o SESSION_SECRET.
+- .env está excluido de Git mediante .gitignore.
+- Para producción se necesita HTTPS y una configuración segura de dominio/cookies, además de revisar los permisos administrativos y el flujo real de pagos.
